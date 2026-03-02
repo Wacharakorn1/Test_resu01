@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resume - Your Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            transition: 0.3s;
+        }
+
+        body.dark {
+            background: #1e1e1e;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        body.dark .card {
+            background: #2c2c2c;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        .role {
+            color: #0077ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: #0077ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .toggle-btn {
+            float: right;
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        body.dark .toggle-btn {
+            background: #fff;
+            color: #000;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="toggle-btn" onclick="toggleDarkMode()">🌙 Toggle Mode</div>
+
+            <h1>Your Name</h1>
+            <div class="role" id="typing"></div>
+
+            <p>
+                นักศึกษาจบใหม่สายคอมพิวเตอร์ สนใจด้าน Frontend Development
+                พร้อมเรียนรู้และพัฒนาตัวเอง
+            </p>
+
+            <h2 class="hidden">🛠 Skills</h2>
+            <ul class="hidden">
+                <li>HTML / CSS</li>
+                <li>JavaScript</li>
+                <li>React (Basic)</li>
+                <li>Git & GitHub</li>
+            </ul>
+
+            <h2 class="hidden">📁 Projects</h2>
+            <div class="hidden">
+                <strong>Hospital Bed Booking System</strong>
+                <ul>
+                    <li>พัฒนาด้วย PHP และ MySQL</li>
+                    <li>มีระบบ Login</li>
+                    <li>ออกแบบ UI เอง</li>
+                </ul>
+            </div>
+
+            <button class="btn" onclick="downloadResume()">Download Resume</button>
+
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+
+        // Fake Download Button
+        function downloadResume() {
+            alert("กำลังดาวน์โหลด Resume...");
+        }
+
+        // Typing Effect
+        const text = "Frontend Developer (Junior)";
+        let index = 0;
+        function typingEffect() {
+            if (index < text.length) {
+                document.getElementById("typing").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typingEffect, 80);
+            }
+        }
+        typingEffect();
+
+        // Scroll Animation
+        const hiddenElements = document.querySelectorAll(".hidden");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+
+        hiddenElements.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
